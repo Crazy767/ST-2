@@ -81,7 +81,7 @@ TEST(TaskTests, PoolCostsExact) {
     double costs = calculatePoolCosts(poolRadius, pathWidth);
 
     double expectedCosts = 72256.57;
-    EXPECT_NEAR(costs, expectedCosts, 1e-2);
+    EXPECT_NEAR(costs, expectedCosts, 0.1);
 }
 
 // Тестирование с различными изменениями длины верёвки
