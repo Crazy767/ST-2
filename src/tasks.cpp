@@ -9,9 +9,9 @@ double calculateRopeGap() {
     return earth.getRadius() - 6378100.0;
 }
 
-double calculatePoolCosts() {
-    Circle pool(3.0);
-    Circle poolWithPath(4.0);
+double calculatePoolCosts(double poolRadius, double pathWidth) {
+    Circle pool(poolRadius);
+    Circle poolWithPath(poolRadius + pathWidth);
     double pathArea = poolWithPath.getArea() - pool.getArea();
     double fenceLength = poolWithPath.getFerence();
 

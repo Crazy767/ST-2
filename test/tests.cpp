@@ -75,9 +75,13 @@ TEST(TaskTests, RopeGapExact) {
 
 // Тесты для задачи "Бассейн"
 TEST(TaskTests, PoolCostsExact) {
-    double costs = calculatePoolCosts();
-    double expectedCosts = 44000.0;  // Ранее вычисленное значение
-    EXPECT_DOUBLE_EQ(costs, expectedCosts);
+    double poolRadius = 3.0;
+    double pathWidth = 1.0;
+
+    double costs = calculatePoolCosts(poolRadius, pathWidth);
+
+    double expectedCosts = 72256.57;  
+    EXPECT_NEAR(costs, expectedCosts, 1e-5);
 }
 
 // Тестирование с различными изменениями длины верёвки
@@ -147,26 +151,27 @@ TEST(TaskTests, RopeGapMinimalChange) {
 }
 
 TEST(TaskTests, PoolCostsWithExactRadiusAdjustment) {
-    Circle pool(3.0);
-    Circle path(3.5);
+    double poolRadius = 3.0;
+    double pathWidth = 1.0;
+    double expectedCosts = 44000.0;
 
-    double pathArea = path.getArea() - pool.getArea();
-    double fenceLength = path.getFerence();
-
-    double expectedCost = pathArea * 1000.0 + fenceLength * 2000.0;
-    EXPECT_NEAR(calculatePoolCosts(), expectedCost, 1e-5);
+    double costs = calculatePoolCosts(poolRadius, pathWidth);
+    EXPECT_NEAR(costs, expectedCosts, 1e-5);
 }
 
 // Тесты, проверяющие расчеты стоимости с нулевым и отрицательным радиусом
 TEST(TaskTests, PoolCostsZeroRadius) {
-    Circle pool(0.0);
-    Circle path(1.0);
+    double poolRadius = 0.0;
+    double pathWidth = 1.0;
+    double expectedCost = calculatePoolCosts(poolRadius, pathWidth);
 
-    double pathArea = path.getArea() - pool.getArea();
-    double fenceLength = path.getFerence();
+    Circle pool(poolRadius);
+    Circle poolWithPath(poolRadius + pathWidth);
+    double pathArea = poolWithPath.getArea() - pool.getArea();
+    double fenceLength = poolWithPath.getFerence();
+    double manuallyCalculatedCost = pathArea * 1000.0 + fenceLength * 2000.0;
 
-    double expectedCost = pathArea * 1000.0 + fenceLength * 2000.0;
-    EXPECT_NEAR(calculatePoolCosts(), expectedCost, 1e-5);
+    EXPECT_NEAR(expectedCost, manuallyCalculatedCost, 1e-5);
 }
 
 // Проверка задачи с нулевым радиусом Земли
@@ -194,11 +199,16 @@ TEST(CircleMicroAdjustmentsTest, UpdateFromTinyArea) {
 
 // Тест задачи "Бассейн" с экстремальными условиями
 TEST(TaskTests, PoolCostsLargeRadius) {
-    Circle pool(1000.0);
-    Circle path(1001.0);
-    double pathArea = path.getArea() - pool.getArea();
-    double fenceLength = path.getFerence();
+    double poolRadius = 1000.0;
+    double pathWidth = 1.0;
 
-    double expectedCost = pathArea * 1000.0 + fenceLength * 2000.0;
-    EXPECT_NEAR(calculatePoolCosts(), expectedCost, 1e-5);
+    double expectedCost = calculatePoolCosts(poolRadius, pathWidth);
+
+    Circle pool(poolRadius);
+    Circle poolWithPath(poolRadius + pathWidth);
+    double pathArea = poolWithPath.getArea() - pool.getArea();
+    double fenceLength = poolWithPath.getFerence();
+    double manuallyCalculatedCost = pathArea * 1000.0 + fenceLength * 2000.0;
+
+    EXPECT_NEAR(expectedCost, manuallyCalculatedCost, 1e-5);
 }
