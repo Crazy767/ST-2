@@ -1,12 +1,13 @@
 set(header_path "${${PROJECT_NAME}_SOURCE_DIR}/include")
-set(header ${header_path}/circle.h)
-set(src circle.cpp)
-set(tasks_src "${${PROJECT_NAME}_SOURCE_DIR}/src/tasks.cpp")
+set(header ${header_path}/circle.h
+        ${header_path}/tasks.h)
+set(src circle.cpp
+        tasks.cpp)
+
 
 add_library(${PROJECT_NAME} SHARED
   ${header}
-  ${src}
-  ${tasks_src})
+  ${src})
   
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
@@ -21,11 +22,6 @@ target_include_directories(${PROJECT_NAME}.info
 target_link_libraries(${PROJECT_NAME}.info
   ${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME}.test test/AllTests.cpp test/tests.cpp)
-target_include_directories(${PROJECT_NAME}.test
-  PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
-         ${header_path}
-)
 
 install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION "${lib_dest}"
