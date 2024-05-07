@@ -1,8 +1,8 @@
 // Copyright 2024 Skotin Alexander
-#ifndef TASKS_H
-#define TASKS_H
+#ifndef INCLUDE_TASKS_H_
+#define INCLUDE_TASKS_H_
 
 double calculateRopeGap();
 double calculatePoolCosts();
 
-#endif
+#endif  // INCLUDE_TASKS_H_

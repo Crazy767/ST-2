@@ -1,5 +1,5 @@
 // Copyright 2024 Skotin Alexander
-#ifndef INCLUDE_TASKS_H_
+
 #include "circle.h"
 #include "tasks.h"
 
@@ -17,5 +17,3 @@ double calculatePoolCosts() {
 
     return pathArea * 1000.0 + fenceLength * 2000.0;
 }
-
-#endif  // INCLUDE_TASKS_H_
