@@ -1,7 +1,7 @@
 // Copyright 2024 Skotin Alexander
 
 #include "circle.h"
-#include "./include/tasks.h"
+#include "tasks.h"
 
 double calculateRopeGap() {
     Circle earth(6378100.0);
