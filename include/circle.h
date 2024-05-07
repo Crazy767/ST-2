@@ -6,7 +6,7 @@
 #include <cmath>
 
 class Circle {
-private:
+ private:
     double radius;
     double ference;
     double area;
@@ -15,7 +15,7 @@ private:
     void updateFromFerence();
     void updateFromArea();
 
-public:
+ public:
     explicit Circle(double r);
 
     void setRadius(double r);

@@ -5,7 +5,7 @@
 
 // Тесты для класса Circle
 class CircleTest : public ::testing::Test {
-protected:
+ protected:
     Circle* circle;
 
     void SetUp() override {
@@ -114,7 +114,7 @@ TEST(CircleExtremeValuesTest, VeryLargeRadius) {
 // Тест на отрицательное значение радиуса
 TEST(CircleInvalidValuesTest, NegativeRadius) {
     Circle circle(-10.0);
-    EXPECT_NEAR(circle.getRadius(), 0.0, 1e-5); // Адаптируйте класс, если требуется обработка отрицательных значений
+    EXPECT_NEAR(circle.getRadius(), 0.0, 1e-5);
     EXPECT_NEAR(circle.getFerence(), 0.0, 1e-5);
     EXPECT_NEAR(circle.getArea(), 0.0, 1e-5);
 }
@@ -131,8 +131,8 @@ TEST(CircleMicroAdjustmentsTest, TinyChanges) {
 TEST(CircleSequentialChangesTest, MultipleAdjustments) {
     Circle circle(10.0);
     circle.setRadius(5.0);
-    circle.setFerence(circle.getFerence() + 3.14159265358979323846); // изменяем длину на π
-    circle.setArea(circle.getArea() - 10.0); // уменьшаем площадь на 10
+    circle.setFerence(circle.getFerence() + 3.14159265358979323846);
+    circle.setArea(circle.getArea() - 10.0);
 
     double expectedRadius = sqrt(circle.getArea() / M_PI);
     EXPECT_NEAR(circle.getRadius(), expectedRadius, 1e-5);
@@ -141,14 +141,14 @@ TEST(CircleSequentialChangesTest, MultipleAdjustments) {
 // Дополнительные тесты для задач "Земля и верёвка" и "Бассейн"
 TEST(TaskTests, RopeGapMinimalChange) {
     Circle earth(6378100.0);
-    earth.setFerence(earth.getFerence() + 0.0001); // минимальное изменение
+    earth.setFerence(earth.getFerence() + 0.0001);
     double gap = earth.getRadius() - 6378100.0;
     EXPECT_NEAR(gap, 0.0001 / (2 * M_PI), 1e-10);
 }
 
 TEST(TaskTests, PoolCostsWithExactRadiusAdjustment) {
     Circle pool(3.0);
-    Circle path(3.5); // радиус дорожки увеличен на 0.5м для теста
+    Circle path(3.5);
 
     double pathArea = path.getArea() - pool.getArea();
     double fenceLength = path.getFerence();
@@ -160,7 +160,7 @@ TEST(TaskTests, PoolCostsWithExactRadiusAdjustment) {
 // Тесты, проверяющие расчеты стоимости с нулевым и отрицательным радиусом
 TEST(TaskTests, PoolCostsZeroRadius) {
     Circle pool(0.0);
-    Circle path(1.0); // радиус дорожки 1м
+    Circle path(1.0);
 
     double pathArea = path.getArea() - pool.getArea();
     double fenceLength = path.getFerence();
@@ -172,7 +172,7 @@ TEST(TaskTests, PoolCostsZeroRadius) {
 // Проверка задачи с нулевым радиусом Земли
 TEST(TaskTests, RopeGapZeroEarthRadius) {
     Circle earth(0.0);
-    earth.setFerence(earth.getFerence() + 1.0); // добавление 1 метра к длине окружности
+    earth.setFerence(earth.getFerence() + 1.0);
     double gap = earth.getRadius();
     EXPECT_NEAR(gap, 1.0 / (2 * M_PI), 1e-5);
 }
@@ -187,15 +187,15 @@ TEST(CircleExtremeValuesTest, MaximumPossibleRadius) {
 // Тестирование обновления через площадь с крайне маленьким значением
 TEST(CircleMicroAdjustmentsTest, UpdateFromTinyArea) {
     Circle circle(10.0);
-    circle.setArea(1e-12);  // устанавливаем крайне маленькую площадь
+    circle.setArea(1e-12);
     EXPECT_NEAR(circle.getRadius(), sqrt(1e-12 / M_PI), 1e-15);
     EXPECT_NEAR(circle.getFerence(), 2 * M_PI * sqrt(1e-12 / M_PI), 1e-15);
 }
 
 // Тест задачи "Бассейн" с экстремальными условиями
 TEST(TaskTests, PoolCostsLargeRadius) {
-    Circle pool(1000.0); // большой бассейн
-    Circle path(1001.0); // радиус с дорожкой
+    Circle pool(1000.0);
+    Circle path(1001.0);
     double pathArea = path.getArea() - pool.getArea();
     double fenceLength = path.getFerence();
 
