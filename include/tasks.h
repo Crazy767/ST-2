@@ -3,6 +3,6 @@
 #define INCLUDE_TASKS_H_
 
 double calculateRopeGap();
-double calculatePoolCosts();
+double calculatePoolCosts(double poolRadius, double pathWidth);
 
 #endif  // INCLUDE_TASKS_H_

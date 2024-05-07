@@ -59,8 +59,8 @@ TEST(CircleControlTest, CustomInitialValues) {
 TEST(CircleSequentialChangesTest, SequentialUpdates) {
     Circle circle(10.0);
     circle.setRadius(5.0);
-    circle.setFerence(circle.getFerence() + 10.0);  // Увеличение окружности
-    circle.setArea(circle.getArea() - 20.0);  // Уменьшение площади
+    circle.setFerence(circle.getFerence() + 10.0);
+    circle.setArea(circle.getArea() - 20.0);
 
     double expectedRadius = sqrt(circle.getArea() / M_PI);
     EXPECT_NEAR(circle.getRadius(), expectedRadius, 1e-5);
@@ -69,7 +69,7 @@ TEST(CircleSequentialChangesTest, SequentialUpdates) {
 // Тесты для задачи "Земля и верёвка"
 TEST(TaskTests, RopeGapExact) {
     double gap = calculateRopeGap();
-    double expectedGap = 1.0 / (2 * M_PI);  // Добавление 1 м к окружности 2πR
+    double expectedGap = 1.0 / (2 * M_PI);
     EXPECT_NEAR(gap, expectedGap, 1e-5);
 }
 
@@ -80,7 +80,7 @@ TEST(TaskTests, PoolCostsExact) {
 
     double costs = calculatePoolCosts(poolRadius, pathWidth);
 
-    double expectedCosts = 72256.57;  
+    double expectedCosts = 72256.57;
     EXPECT_NEAR(costs, expectedCosts, 1e-5);
 }
 
