@@ -4,10 +4,12 @@ project (ST-2)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -g")
 
+# Определение каталогов установки
 set(tool_dest "bin")
 set(lib_dest "lib")
 set(include_dest "include/")
 
+# Пути к заголовочным файлам и исходникам
 set(header_path "${PROJECT_SOURCE_DIR}/include")
 set(header "${header_path}/circle.h")
 set(src "${PROJECT_SOURCE_DIR}/src/circle.cpp")
@@ -30,14 +32,7 @@ target_link_libraries(${PROJECT_NAME}
   pthread
 )
 
-# Добавление исполняемого файла для основной программы
-add_executable(${PROJECT_NAME}.info main.cpp)
-target_include_directories(${PROJECT_NAME}.info PUBLIC
-  ${header_path}
-)
-target_link_libraries(${PROJECT_NAME}.info ${PROJECT_NAME})
-
-# Добавление исполняемого файла для тестов
+add_executable(${PROJECT_NAME}.info src/main.cpp)
 add_executable(${PROJECT_NAME}.test test/AllTests.cpp test/tests.cpp)
 target_include_directories(${PROJECT_NAME}.test PUBLIC
   ${header_path}
